@@ -1,6 +1,7 @@
 package com.muqui.model;
 // Generated 5/11/2016 06:03:56 PM by Hibernate Tools 4.3.1
 
+//import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.HashSet;
 import java.util.Set;
