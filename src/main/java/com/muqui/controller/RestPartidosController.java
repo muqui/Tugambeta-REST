@@ -15,6 +15,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -30,9 +31,9 @@ public class RestPartidosController {
     PartidoService partidoService;
 
     /*---obtiene todos los partidos---*/
-    @GetMapping("/partidos")
-    public ResponseEntity<List<Partidos>> list() {
-        List<Partidos> partidos = partidoService.getPartidos("ligamx");
+    @GetMapping("/partidos/{liga}")
+    public ResponseEntity<List<Partidos>> list(@PathVariable String liga) {
+        List<Partidos> partidos = partidoService.getPartidos(liga);
         return ResponseEntity.ok().body(partidos);
     }
     //
@@ -52,18 +53,18 @@ public class RestPartidosController {
      *   
      *   }
      */
-    @PostMapping("/jugar")
-    public ResponseEntity<?> save(@RequestBody Jugador jugador) {
-        String vigente = String.valueOf(partidoService.jugar(jugador, "ligamx"));           
+    @PostMapping("/jugar/{liga}")
+    public ResponseEntity<?> save(@PathVariable String liga, @RequestBody Jugador jugador) {
+        String vigente = String.valueOf(partidoService.jugar(jugador,liga));           
         return ResponseEntity.ok().body("New player has been saved with Model:" + jugador.getQuiniela());
     }
 
-     /*---obtiene todos los partidos---*/
-    @GetMapping("/participantes")
-    public ResponseEntity< List<List<String>> > listParticipantes() {
-         Pagina p = partidoService.getPagina("ligamx");
+     /*---obtiene lista de  los participantes---*/
+    @GetMapping("/participantes/{liga}")
+    public ResponseEntity< List<List<String>> > listParticipantes(@PathVariable String liga) {
+         Pagina p = partidoService.getPagina(liga);
          
-           List<List<String>> participantes = partidoService.getParticipantesSinLogin(p.getActual(), "ligamx"); ;
+           List<List<String>> participantes = partidoService.getParticipantesSinLogin(p.getActual(), liga); ;
         return ResponseEntity.ok().body(participantes);
     }
 }
