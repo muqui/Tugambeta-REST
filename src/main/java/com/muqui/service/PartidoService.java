@@ -5,6 +5,8 @@
  */
 package com.muqui.service;
 
+import com.muqui.model.Jugador;
+import com.muqui.model.Pagina;
 import com.muqui.model.Partidos;
 import java.util.List;
 
@@ -14,5 +16,12 @@ import java.util.List;
  */
 public interface PartidoService {
      public List<Partidos> getPartidos();
+      public List<Partidos> getPartidos(String liga);
+
+    public int jugar(Jugador jugador, String ligamx);
+
+    public Pagina getPagina(String ligamx);
+
+    public List<List<String>> getParticipantesSinLogin(Integer actual, String ligamx);
     
 }

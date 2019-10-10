@@ -5,6 +5,8 @@
  */
 package com.muqui.dao;
 
+import com.muqui.model.Jugador;
+import com.muqui.model.Pagina;
 import com.muqui.model.Partidos;
 import java.util.List;
 
@@ -13,5 +15,14 @@ import java.util.List;
  * @author mq12
  */
 public interface PartidoDao {
-      public List<Partidos> getPartidos();
+
+    public List<Partidos> getPartidos();
+
+    public List<Partidos> getPartidos(String liga);
+    
+    public int jugar(Jugador jugador, String userId);
+
+    public Pagina getPagina(String ligamx);
+    
+    List<List<String>> getParticipantesSinLogin(Integer actual, String userId);
 }

@@ -67,7 +67,7 @@ public class Partidos implements java.io.Serializable {
         this.idpartidos = idpartidos;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "quiniela_idquiniela", nullable = false)
     public Quiniela getQuiniela() {
         return this.quiniela;
