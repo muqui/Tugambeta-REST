@@ -31,7 +31,7 @@ public class RestPartidosController {
     PartidoService partidoService;
 
     /*---obtiene todos los partidos---*/
-    @GetMapping("/partidos/{liga}")
+    @GetMapping("grupo/partidos/{liga}")
     public ResponseEntity<List<Partidos>> list(@PathVariable String liga) {
         List<Partidos> partidos = partidoService.getPartidos(liga);
         return ResponseEntity.ok().body(partidos);
@@ -42,6 +42,7 @@ public class RestPartidosController {
      * add player
      * @param jugador
      * @return
+     * Inserta jugador a la base de datos
      * La clase Jugador debe contener los siguientes parametros para su correcto funcionamiento
      * Ejemplo:
      * Datos json
@@ -53,14 +54,14 @@ public class RestPartidosController {
      *   
      *   }
      */
-    @PostMapping("/jugar/{liga}")
+    @PostMapping("grupo/jugar/{liga}")
     public ResponseEntity<?> save(@PathVariable String liga, @RequestBody Jugador jugador) {
         String vigente = String.valueOf(partidoService.jugar(jugador,liga));           
         return ResponseEntity.ok().body("New player has been saved with Model:" + jugador.getQuiniela());
     }
 
      /*---obtiene lista de  los participantes---*/
-    @GetMapping("/participantes/{liga}")
+    @GetMapping("grupo/participantes/{liga}")
     public ResponseEntity< List<List<String>> > listParticipantes(@PathVariable String liga) {
          Pagina p = partidoService.getPagina(liga);
          

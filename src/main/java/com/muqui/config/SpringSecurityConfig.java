@@ -52,12 +52,14 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .httpBasic()
                 .and()
                 .authorizeRequests()
-                 .antMatchers("/car/**").access("hasRole('ADMIN') ")
-                .antMatchers(HttpMethod.GET, "/car/**").hasRole("ADMIN")
-                .antMatchers(HttpMethod.POST, "/car").hasRole("ADMIN")
-                .antMatchers(HttpMethod.PUT, "/car/**").hasRole("ADMIN")
-                .antMatchers(HttpMethod.PATCH, "/car/**").hasRole("ADMIN")
-                .antMatchers(HttpMethod.DELETE, "/car/**").hasRole("ADMIN")
+                /* url de jugador*/
+                 .antMatchers("/grupo/**").access("hasRole('JUGADOR') ")
+                .antMatchers(HttpMethod.GET, "/grupo/**").hasRole("JUGADOR")
+                .antMatchers(HttpMethod.POST, "/grupo").hasRole("JUGADOR")
+                .antMatchers(HttpMethod.PUT, "/grupo/**").hasRole("JUGADOR")
+                .antMatchers(HttpMethod.PATCH, "/grupo/**").hasRole("JUGADOR")
+                .antMatchers(HttpMethod.DELETE, "/grupo/**").hasRole("JUGADOR")
+
                 .and()
                 .csrf().disable()
                 .formLogin().disable();
